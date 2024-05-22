@@ -2,6 +2,7 @@
 
 This is a simple User Service API built with Node.js, Express, TypeORM, and PostgreSQL. It supports CRUD operations, Swagger API documentation, and a license key middleware for endpoint protection. The project is set up to run with Docker and can also be run locally.
 
+![Example Image](diagram/23_b7980ee5.jpg)
 
 ## Prerequisites
 
