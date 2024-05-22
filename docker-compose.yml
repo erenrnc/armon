@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: userdb
+    ports:
+      - "5432:5432"
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build: ./user-service
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_HOST: db
+      TYPEORM_USERNAME: postgres
+      TYPEORM_PASSWORD: 123456
+      TYPEORM_DATABASE: userdb
+      TYPEORM_PORT: 5432
+      TYPEORM_SYNCHRONIZE: true
+      TYPEORM_ENTITIES: src/entities/*.ts
